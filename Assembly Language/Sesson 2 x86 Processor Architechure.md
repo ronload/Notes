@@ -188,3 +188,23 @@
      2.   Eight 64-bit MMX register.
 
      3.   Eight 128-bit XMM registers for single-instruction multiple-data (SIMD) operations.
+
+### IA-32 Memory Management
+
+#### Real-address mode
+
+1 MB RAM maximum addressable, from hexadecimal 00000 to FFFFF
+
+1.   Application programs can access any area of memory.
+
+2.   Single tasking.
+
+3.   Support by MS-DOS operating system: Windows 95 and WIndows 98 can be booted into this mode.
+
+4.   Segmented Memory:
+
+     1.   All memory is devided into 64KB(216bytes) units called segments.
+
+     2.   Segmented memory adddressing:
+
+          Absolute(linear) address is a combination of a 16-bits segment value add to a 16-bits offset.
