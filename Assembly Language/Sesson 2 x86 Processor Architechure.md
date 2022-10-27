@@ -139,7 +139,7 @@
 
 3.   Index and Base Registers:
 
-     1.   Some registers have only a 16-bit name for their lower half: 
+     1.   Some registers have only a **16-bit** name for their lower half: 
 
           <img src="Photos/Screen Shot 2022-10-26 at 8.32.46 PM.png" alt="Screen Shot 2022-10-26 at 8.32.46 PM" style="zoom:50%;" />
 
@@ -166,12 +166,12 @@
 
 4.   Status Flags:
 
-     1.   Carry: Unsigned arithmetic out of range.
-     2.   Overflow: Signed arithmetic out of range.
-     3.   Sign: Result is negtive.
-     4.   Zero: Result is zero.
+     1.   Carry: **Unsigned arithmetic** out of range.
+     2.   Overflow: **Signed arithmetic** out of range.
+     3.   Sign: Result is **negtive**.
+     4.   Zero: Result is **zero**.
      5.   Auxiliary Carry: Carry from bit 3 to bit.
-     6.   Parity: Sum of 1 bits is an even number.
+     6.   Parity: Sum of 1 bits is an **even** number.
 
 5.   Floating-Point, MMX, XMM Register:
 
@@ -181,7 +181,7 @@
 
           2.   Arrange in stack.
 
-          3.   Used for all floating-point arithmetic.
+          3.   Used for all **floating-point** arithmetic.
 
                <img src="Photos/Screen Shot 2022-10-26 at 8.43.15 PM.png" alt="Screen Shot 2022-10-26 at 8.43.15 PM" style="zoom:50%;" />
 
@@ -193,13 +193,13 @@
 
 #### Real-address mode
 
-1 MB RAM maximum addressable, from hexadecimal 00000 to FFFFF
+**1 MB RAM maximum** addressable, from hexadecimal 00000 to FFFFF
 
-1.   Application programs can access any area of memory.
+1.   Application programs can access **any** area of memory.
 
-2.   Single tasking.
+2.   **Single tasking**.
 
-3.   Support by MS-DOS operating system: Windows 95 and WIndows 98 can be booted into this mode.
+3.   Support by **MS-DOS** operating system: Windows 95 and WIndows 98 can be booted into this mode.
 
 4.   Segmented Memory:
 
@@ -208,3 +208,127 @@
      2.   Segmented memory adddressing:
 
           Absolute(linear) address is a combination of a 16-bits segment value add to a 16-bits offset.
+          
+          <img src="/Users/luoyongneng/Working/Notes/Assembly Language/Photos/Screen Shot 2022-10-27 at 9.41.16 PM.png" alt="Screen Shot 2022-10-27 at 9.41.16 PM" style="zoom:40%;" />
+          
+          >   Segmented memory map.Real-address mode($2^{20}$Bytes)
+
+5.   Calculate Linear Addresses
+
+     1.   In real address mode, the linear(or absolute) address is 20 bits.
+
+     2.   Given a segment address, multiply it by 16(add a hexadecimal zero), and add it to the offset
+
+          Example. convert 08F1:0100 to a linear address
+
+          1.   Adjested Segment value:  08F10
+          2.   Add the offset:                      0100
+          3.   Get linear address:            09010
+
+#### Protected Mode
+
+1.   **4GB addressable** RAM(00000000 to FFFFFFFFh)
+2.   Each program assigned a memory partition **which is protected** from other programs.
+3.   Designed for **multitasking**.
+4.   Supported by **Linux** and **MS-Windows**.
+
+### 64-Bit Processors
+
+#### 64-Bit Operation Modes:
+
+1.   Compatibility mode: Can run existing 16-bit and 32-bit applications.
+
+     (Windows supports only 32-bit apps in this mode.)
+
+2.   64-bit mode: Windows 64 uses this.
+
+#### Basic Execution Environment:
+
+1.   Address can be 64 bits(48 bits in practice).
+2.   16 64-bit general purpose registers.
+3.   64 -bit instruction pointer named RIP.
+
+#### 64-Bit General Purpose Register
+
+1.   32-bit general purpose registers: 
+
+     EAX, EBX, ECX, EDX, EDI, ESI, EBP, ESP, R8D, R9D, R10D, R11D, R12D, R13D, R14D, R15D
+
+2. 64-bit general purpose registers: 
+    RAX, RBX, RCX, RDX, RDI, RSI, RBP, RSP, R8, R9, R10, R11, R12, R13, R14, R15
+
+### Components of an IA-32 Microcomputer
+
+1.   Motherboard
+
+     1.   CPU socket
+     2.   External cache memory slots
+     3.   BIOS chip
+     4.   Sound synthesizer chip (optional)
+     5.   Video controller chip (optional)
+     6.   IDE, parallel, serial, USB, video, keyboard, joystick, network, and mouse connectors
+     7.   PCI bus connectors (expansion cards)
+2.   Video Output
+
+     1.   Video controller
+
+          1.   on motherboard, or on expansion card
+
+          2.   AGP (accelerated graphics port technology)
+     2.   Video memory (VRAM)
+     3.   Video CRT Display
+
+          1.   uses raster scanning
+
+          2.   horizontal retrace
+
+          3.   vertical retrace
+     4.   Direct digital LCD monitors
+          1.   no raster scanning require
+3.   Memory
+     1.   ROM: read-only memory
+     2.   EPROM: erasable programmable read-only memory
+     3.   DRAM (Dynamic RAM): inexpensive; must be refreshed constantly
+     4.   SRAM (Static RAM): expensive; used for cache memory; no refresh required
+     5.   VRAM (Video RAM): dual ported; optimized for constant video refresh
+     6.   CMOS RAM: 
+          1.   complimentary metal-oxide semiconductor
+          2.   system setup information
+4.   Input-Output Ports
+     1.   USB (universal serial bus)
+          1.   intelligent high-speed connection to devices
+          2.   up to 12 megabits/second
+          3.   USB hub connects multiple devices
+          4.   enumeration: computer queries devices
+          5.   supports hot connections
+     2.   Parallel
+          1.   short cable, high speed
+          2.   common for printers
+          3.   bidirectional, parallel data transfer
+          4.   Intel 8255 controller chip
+     3.   Serial
+          1.   RS-232 serial port
+          2.   one bit at a time
+          3.   uses long cables and modems
+          4.   16550 UART (universal asynchronous receiver transmitter)
+          5.   programmable in assembly language
+5.   Device Interfaces
+     1.   ATA host adapters: intelligent drive electronics (hard drive, CDROM)
+     2.   SATA (Serial ATA)•: inexpensive, fast, bidirectional
+     3.   FireWire: high speed (800 MB/sec), **many devices at once**
+     4.   Bluetooth: small amounts of data, short distances, low power usage
+     5.   Wi-Fi (wireless Ethernet)•IEEE 802.11 standard, **faster than Bluetooth**
+
+### Input-Output System:
+
+#### Levels of Input-Output
+
+1.   Level 3: High-level language function
+     1.   examples: C++, Java
+     2.   portable, convenient, not always the fastest
+2.   Level 2: Operating system
+     1.   Application Programming Interface (API)
+     2.   extended capabilities, lots of details to master
+3.   Level 1: BIOS
+     1.   drivers that communicate directly with devices
+     2.   OS security may prevent application-level code from working at this level
